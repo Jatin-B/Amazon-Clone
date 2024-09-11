@@ -28,7 +28,7 @@ products.forEach((product) => {
       </div>
 
       <div class="product-quantity-container">
-        <select>
+        <select class = "js-quantity-selector-${product.id}">
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -44,7 +44,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-to-cart${product.id} ">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -68,10 +68,34 @@ function updateCartQuantity() {
   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 }
 
+const addedMessageTimeouts = {};
+
+function addMessage(productId) {
+  const addedMessage = document.querySelector(`.js-added-to-cart${productId}`);
+
+  // Clear the previous timeout for the specific product if it exists
+  if (addedMessageTimeouts[productId]) {
+    clearTimeout(addedMessageTimeouts[productId]);
+  }
+
+  // Add the class to show the message
+  addedMessage.classList.add('added');
+
+  // Set a new timeout for this product
+  const timeoutId = setTimeout(() => {
+    addedMessage.classList.remove('added');
+  }, 2000);
+
+  // Store the timeout ID for this product
+  addedMessageTimeouts[productId] = timeoutId;
+}
+
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
     addToCart(productId);
+    addMessage(productId);
     updateCartQuantity();
   });
 });
