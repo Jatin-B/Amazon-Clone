@@ -7,8 +7,8 @@
   margin-bottom: 100px;
 
   /* margin-left: auto;
-     margin-right auto;
-     Is a trick for centering an element horizontally
+    margin-right auto;
+    Is a trick for centering an element horizontally
      without needing a container. */
   margin-left: auto;
   margin-right: auto;
@@ -79,7 +79,7 @@
 .cart-item-details-grid {
   display: grid;
   /* 100px 1fr 1fr; means the 2nd and 3rd column will
-     take up half the remaining space in the grid
+    take up half the remaining space in the grid
      (they will divide up the remaining space evenly). */
   grid-template-columns: 100px 1fr 1fr;
   column-gap: 25px;
@@ -97,8 +97,8 @@
   max-height: 120px;
 
   /* margin-left: auto;
-     margin-right auto;
-     Is a trick for centering an element horizontally
+      margin-right auto;
+      Is a trick for centering an element horizontally
      without needing a container. */
   margin-left: auto;
   margin-right: auto;
@@ -208,4 +208,29 @@
 
   margin-top: 11px;
   margin-bottom: 15px;
+}
+
+.quantity-input {
+  width: 30px;
+  display: none;
+}
+
+.save-quantity-link {
+  display: none;
+}
+
+.is-editing-quantity .quantity-input{
+  display: initial;
+}
+
+.is-editing-quantity .save-quantity-link {
+  display: initial;
+}
+
+.is-editing-quantity .quantity-label {
+  display: none;
+}
+
+.is-editing-quantity .update-quantity-link {
+  display: none;
 }
